@@ -1,11 +1,14 @@
 import axios from 'axios';
+
 import { baseUrl, apiToken } from '../../../auth/auth.mjs';
+import { infoLog, errorLog } from '../../../../util/logMessage.mjs';
 
 const dataset = 'covid19';
 const tableName = 'caso_full';
 
 export default async (apiFilters) => {
-  const url = `${baseUrl}/${dataset}/${tableName}/data/?page_size=10000${apiFilters}`;
+  const url = `${baseUrl}/${dataset}/${tableName}/data/?${apiFilters}&page_size=7000`;
+  infoLog(`Extracting data from ${url}`);
 
   return await axios
     .get(url, {
@@ -17,6 +20,7 @@ export default async (apiFilters) => {
       return res.data.results;
     })
     .then((data) => {
+      infoLog(`${data.length} rows obtained.`);
       return data.map((item) => {
         return {
           state: item.state,
@@ -39,6 +43,6 @@ export default async (apiFilters) => {
       });
     })
     .catch((error) => {
-      console.error(error);
+      errorLog(error);
     });
 };

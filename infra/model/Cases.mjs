@@ -1,10 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const CasesSchema = new Schema({
-  regionIgbeCode: Number,
-  region: String,
-  stateIbgeCode: Number,
+const casesSchema = new Schema({
   state: String,
   cityIbgeCode: Number,
   city: String,
@@ -23,6 +20,6 @@ const CasesSchema = new Schema({
   newDeaths: Number,
 });
 
-const CasesModel = mongoose.model('CasesModel', CasesSchema);
+const casesModel = mongoose.model('cases', casesSchema);
 
-export default CasesModel;
+export default casesModel;
