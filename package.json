@@ -1,0 +1,14 @@
+{
+  "name": "portifolio",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "mongoose": "^5.12.13",
+    "node-mailer": "^0.1.1"
+  }
+}
