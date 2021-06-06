@@ -95,4 +95,5 @@ local.settings.json
 
 #custom
 .vscode
-infra/auth/db.js
+infra/auth/db.mjs
+BrasilIO/auth/auth.mjs
