@@ -6,7 +6,7 @@ import saveApiData from './loader/index.mjs';
 
 import { infoLog, errorLog } from '../../../util/logMessage.mjs';
 
-const date = new Date(2021, 5, 2);
+const date = new Date();
 const dateToExtract = addDays(date, -1);
 const formattedDate = format(dateToExtract, 'yyyy-MM-dd');
 const monthYear = Number(format(dateToExtract, 'yyyyMM'));
