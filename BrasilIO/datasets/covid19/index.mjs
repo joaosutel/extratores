@@ -6,9 +6,11 @@ import saveApiData from './loader/index.mjs';
 
 import { infoLog, errorLog } from '../../../util/logMessage.mjs';
 
-const dateToExtract = addDays(new Date(), -1);
+const date = new Date(2021, 5, 2);
+const dateToExtract = addDays(date, -1);
 const formattedDate = format(dateToExtract, 'yyyy-MM-dd');
 const monthYear = Number(format(dateToExtract, 'yyyyMM'));
+const monthYearToDelete = format(date, 'yyyyMM');
 const dateFilter = `date=${formattedDate}`;
 
 export default async (context) => {
@@ -17,10 +19,14 @@ export default async (context) => {
     const apiData = await extractApiData(dateFilter);
 
     infoLog(`Modeling data obtained from the API`);
-    const modeledData = await transformApiData(apiData, monthYear);
+    const modeledData = await transformApiData(
+      apiData,
+      monthYear,
+      monthYearToDelete
+    );
 
     infoLog(`Sending data to MongoDB`);
-    await saveApiData(modeledData, formattedDate);
+    await saveApiData(modeledData, monthYearToDelete, formattedDate);
   } catch (error) {
     errorLog(error);
     throw new Error();

@@ -1,11 +1,10 @@
 import mongoose from 'mongoose';
-import { format } from 'date-fns';
 
 import ConnectionString from '../../../../infra/auth/db.mjs';
 import CasesModel from '../../../../infra/model/Cases.mjs';
 import { infoLog, errorLog } from '../../../../util/logMessage.mjs';
 
-export default async (dataset, date) => {
+export default async (dataset, monthYearToDelete, dateToDelete) => {
   infoLog(`Connecting...`);
   mongoose.connect(
     ConnectionString,
@@ -20,7 +19,7 @@ export default async (dataset, date) => {
   );
 
   await CasesModel.deleteMany({
-    yearMonth: format(new Date(date), 'yyyyMM'),
+    yearMonth: Number(monthYearToDelete),
     placeType: 'city',
   })
     .then((resp) =>
@@ -29,7 +28,7 @@ export default async (dataset, date) => {
     .catch((err) => errorLog(err));
 
   await CasesModel.deleteMany({
-    date: new Date(date),
+    date: dateToDelete,
     placeType: 'state',
   })
     .then((resp) =>
