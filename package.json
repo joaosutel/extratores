@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "date-fns": "^2.22.1",
     "mongoose": "^5.12.13",
     "node-mailer": "^0.1.1"
   }
