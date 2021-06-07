@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 
 import { infoLog, errorLog } from '../../../../util/logMessage.mjs';
 
-export default async (dataset) => {
+export default async (dataset, monthYear) => {
   try {
     infoLog(`Renaming fields`);
     return dataset.map((item) => ({
@@ -10,7 +10,7 @@ export default async (dataset) => {
       cityIbgeCode: item.placeType === 'state' ? null : item.cityIbgeCode,
       city: item.city,
       placeType: item.placeType,
-      yearMonth: Number(format(new Date(item.date), 'yyyyMM')),
+      yearMonth: monthYear,
       epidemiologicalWeek: item.epidemiologicalWeek,
       date: new Date(item.date),
       availableDate: new Date(item.availableDate),
