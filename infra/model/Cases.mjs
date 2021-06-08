@@ -9,7 +9,7 @@ const casesSchema = new Schema({
   yearMonth: Number,
   epidemiologicalWeek: Number,
   date: Date,
-  availableDate: Number,
+  availableDate: Date,
   population: Number,
   populationIn2019: Number,
   casesConfirmed: Number,
